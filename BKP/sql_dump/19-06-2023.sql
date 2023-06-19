@@ -3,7 +3,7 @@
 -- Host: localhost	Database: trabweb
 -- ------------------------------------------------------
 -- Server version 	10.4.27-MariaDB
--- Date: Mon, 19 Jun 2023 04:29:20 +0200
+-- Date: Mon, 19 Jun 2023 05:40:11 +0200
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -24,10 +24,10 @@
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `alunos` (
-  `Joao` varchar(10) NOT NULL,
-  `Pedro` varchar(10) NOT NULL,
-  `Araújo` varchar(10) NOT NULL,
-  `Lima` varchar(10) NOT NULL
+  `EDMILSON` varchar(10) NOT NULL,
+  `LUCAS` varchar(10) NOT NULL,
+  `SHADS` varchar(10) NOT NULL,
+  `PIUPS` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -38,11 +38,12 @@ CREATE TABLE `alunos` (
 LOCK TABLES `alunos` WRITE;
 /*!40000 ALTER TABLE `alunos` DISABLE KEYS */;
 SET autocommit=0;
+INSERT INTO `alunos` VALUES ('','','','');
 /*!40000 ALTER TABLE `alunos` ENABLE KEYS */;
 UNLOCK TABLES;
 COMMIT;
 
--- Dumped table `alunos` with 0 row(s)
+-- Dumped table `alunos` with 1 row(s)
 --
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -55,4 +56,4 @@ COMMIT;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on: Mon, 19 Jun 2023 04:29:20 +0200
+-- Dump completed on: Mon, 19 Jun 2023 05:40:11 +0200

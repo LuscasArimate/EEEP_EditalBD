@@ -21,7 +21,7 @@ $mail->SetFrom("bkpmm.sh@gmail.com");
 $mail->addAddress('bkpmm.sh@gmail.com');
 $mail->IsHTML(true);
 $mail->Subject="Website Backup ";
-$mail->Body="Website Backup";
+$mail->Body="Aqui esta o seu Backup do dia ! Espero que tenha tido um otimo dia de trabalho, fico grato em estar aqui para ajudar";
 $mail->AddAttachment("sql_dump/$f.sql");
 $mail->SMTPOptions=array('ssl'=>array(
 	'verify_peer'=>false,

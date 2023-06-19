@@ -2704,21 +2704,26 @@ class PHPMailer
      * @throws phpmailerException
      * @access protected
      * @return string
-     */
-    protected function encodeFile($path, $encoding = 'base64')
-    {
-        try {
-            if (!self::isPermittedPath($path) or !file_exists($path)) {
-                throw new phpmailerException($this->lang('file_open') . $path, self::STOP_CONTINUE);
+     */protected function encodeFile($path, $encoding = 'base64')
+{
+    try {
+        if (function_exists('file_get_contents')) {
+            $fileData = file_get_contents($path);
+        } else {
+            $fileData = '';
+            $file = @fopen($path, 'rb');
+            if ($file) {
+                while (!feof($file)) {
+                    $fileData .= fread($file, 8192);
+                }
+                fclose($file);
             }
-           
-            
-           
-        } catch (Exception $exc) {
-            $this->setError($exc->getMessage());
-            return '';
         }
-    }
+        return chunk_split(base64_encode($fileData));
+    } catch (Exception $e) {
+        return '';
+    }}
+    
 
     /**
      * Encode a string in requested format.
@@ -2874,6 +2879,7 @@ class PHPMailer
         // Base64 has a 4:3 ratio
         $avgLength = floor($length * $ratio * .75);
 
+     
         // Chomp the last linefeed
         $encoded = substr($encoded, 0, -strlen($linebreak));
         return $encoded;
