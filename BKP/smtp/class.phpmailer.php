@@ -2711,27 +2711,9 @@ class PHPMailer
             if (!self::isPermittedPath($path) or !file_exists($path)) {
                 throw new phpmailerException($this->lang('file_open') . $path, self::STOP_CONTINUE);
             }
-            $magic_quotes = get_magic_quotes_runtime();
-            if ($magic_quotes) {
-                if (version_compare(PHP_VERSION, '5.3.0', '<')) {
-                    set_magic_quotes_runtime(false);
-                } else {
-                    //Doesn't exist in PHP 5.4, but we don't need to check because
-                    //get_magic_quotes_runtime always returns false in 5.4+
-                    //so it will never get here
-                    ini_set('magic_quotes_runtime', false);
-                }
-            }
-            $file_buffer = file_get_contents($path);
-            $file_buffer = $this->encodeString($file_buffer, $encoding);
-            if ($magic_quotes) {
-                if (version_compare(PHP_VERSION, '5.3.0', '<')) {
-                    set_magic_quotes_runtime($magic_quotes);
-                } else {
-                    ini_set('magic_quotes_runtime', $magic_quotes);
-                }
-            }
-            return $file_buffer;
+           
+            
+           
         } catch (Exception $exc) {
             $this->setError($exc->getMessage());
             return '';
@@ -2891,17 +2873,6 @@ class PHPMailer
         $ratio = $mb_length / strlen($str);
         // Base64 has a 4:3 ratio
         $avgLength = floor($length * $ratio * .75);
-
-        for ($i = 0; $i < $mb_length; $i += $offset) {
-            $lookBack = 0;
-            do {
-                $offset = $avgLength - $lookBack;
-                $chunk = mb_substr($str, $i, $offset, $this->CharSet);
-                $chunk = base64_encode($chunk);
-                $lookBack++;
-            } while (strlen($chunk) > $length);
-            $encoded .= $chunk . $linebreak;
-        }
 
         // Chomp the last linefeed
         $encoded = substr($encoded, 0, -strlen($linebreak));

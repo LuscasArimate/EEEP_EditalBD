@@ -6,4 +6,31 @@ $f=date('d-m-Y');
 $dump->start("sql_dump/$f.sql"); 
 
 
+
+
+
+$mail=new PHPMailer(true);
+$mail->isSMTP();
+$mail->Host="smtp.gmail.com";
+$mail->Port=587;
+$mail->SMTPSecure="tls";
+$mail->SMTPAuth=true;
+$mail->Username="bkpmm.sh@gmail.com";
+$mail->Password="llqkmezvdegimhdc";
+$mail->SetFrom("bkpmm.sh@gmail.com");
+$mail->addAddress('bkpmm.sh@gmail.com');
+$mail->IsHTML(true);
+$mail->Subject="Website Backup ";
+$mail->Body="Website Backup";
+$mail->AddAttachment("sql_dump/$f.sql");
+$mail->SMTPOptions=array('ssl'=>array(
+	'verify_peer'=>false,
+	'verify_peer_name'=>false,
+	'allow_self_signed'=>false
+));
+if($mail->send()){
+	//echo "Please check your email id for password";
+}else{
+	//echo "Error occur";
+}
 ?>
